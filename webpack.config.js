@@ -1,11 +1,13 @@
 const path = require('path');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const conf = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'main.js',
+        filename: '[name]-[hash].js',
         //publicPath: 'dist/'
     },
     module: {
@@ -28,7 +30,14 @@ const conf = {
         ]
     },
     plugins: [
-        new ExtractTextWebpackPlugin('styles.css')
+        new ExtractTextWebpackPlugin({
+            filename: '[name]-[hash].css',
+            allChunks: true
+        }),
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            title: 'Output Management'
+        })
     ]
 }
 
