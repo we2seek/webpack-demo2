@@ -1,0 +1,9 @@
+body {
+    background-color: whitesmoke;
+    color: #222;
+}
+
+.title {
+    color: firebrick;
+    text-transform: uppercase;
+}
