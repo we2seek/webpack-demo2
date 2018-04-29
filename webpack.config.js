@@ -6,7 +6,7 @@ const conf = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
-        publicPath: 'dist/'
+        //publicPath: 'dist/'
     },
     module: {
         rules: [
@@ -19,6 +19,11 @@ const conf = {
                 //     'style-loader',
                 //     'css-loader'
                 // ]
+            }, {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader'
+                ]
             }
         ]
     },

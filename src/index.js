@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import './css/styles.css';
+import Img from './img/wild-nature1.jpg';
 
 const people = [
     { name: 'Vitaliy Timchenko', age: '33' },
@@ -9,6 +10,7 @@ const people = [
 
 document.body.appendChild(createList(people));
 document.body.appendChild(test(people));
+document.body.appendChild(createImage());
 $('.people-list').append($('<li>Dynamically created content...</li>'));
 
 function createList(list) {
@@ -32,4 +34,10 @@ function test(list) {
     const items = list.map(i => i.name + ' &mdash; ' + i.age);
     element.innerHTML = items.join('<br/>');
     return element;
+}
+
+function createImage() {
+    const image = new Image();
+    image.src = Img;
+    return image;
 }
