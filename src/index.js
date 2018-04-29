@@ -39,7 +39,5 @@ function test(list) {
 function createImage() {
     const image = new Image();
     image.src = Img;
-    console.log(image.src);
-
     return image;
 }

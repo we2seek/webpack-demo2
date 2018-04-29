@@ -4,17 +4,17 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-const conf = {
-    entry: './src/index.js',
+module.exports = {
+    entry: {
+        app: './src/index.js'
+    },
+
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist'),
         filename: '[name]-[hash].js',
         //publicPath: 'dist/'
     },
-    devServer: {
-        contentBase: './dist',
-        hot: true
-    },
+
     module: {
         rules: [
             {
@@ -34,24 +34,19 @@ const conf = {
             }
         ]
     },
+
     plugins: [
         new ExtractTextWebpackPlugin({
             filename: '[name]-[hash].css',
             allChunks: true
         }),
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['dist'], {
+            root: path.join(__dirname, '..')
+        }),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            title: 'Index page'
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]
-}
-
-module.exports = (env, options) => {
-    const production = options.mode === 'production';
-    // conf.devtool = production ? 'source-map' : 'eval-sourcemap';
-    conf.devtool = production ? false : 'inline-source-map';
-
-    return conf;
-}
+};
